@@ -1,0 +1,37 @@
+[
+    {
+        "student_id": 100,
+        "name": "Amany Rabie ",
+        "age": 21,
+        "department": "CV",
+        "gpa": 3.3
+    },
+    {
+        "student_id": 102,
+        "name": "Ali Mohamed",
+        "age": 22,
+        "department": "Software",
+        "gpa": 3.0
+    },
+    {
+        "student_id": 101,
+        "name": "Eman Ahmed",
+        "age": 21,
+        "department": "IOT",
+        "gpa": 3.4
+    },
+    {
+        "student_id": 103,
+        "name": "Ahmed Ali ",
+        "age": 21,
+        "department": "Web Development",
+        "gpa": 2.9
+    },
+    {
+        "student_id": 104,
+        "name": "Hesham Ali ",
+        "age": 21,
+        "department": "CSS",
+        "gpa": 2.7
+    }
+]
