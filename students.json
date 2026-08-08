@@ -7,13 +7,6 @@
         "gpa": 3.3
     },
     {
-        "student_id": 102,
-        "name": "Ali Mohamed",
-        "age": 22,
-        "department": "Software",
-        "gpa": 3.0
-    },
-    {
         "student_id": 101,
         "name": "Eman Ahmed",
         "age": 21,
@@ -33,5 +26,12 @@
         "age": 21,
         "department": "CSS",
         "gpa": 2.7
+    },
+    {
+        "student_id": 106,
+        "name": "Amina Hamed",
+        "age": 23,
+        "department": "IT",
+        "gpa": 3.111
     }
 ]

@@ -12,6 +12,11 @@ while True:
     print("4. Update GPA")
     print("5. Display All Students")
     print("6. Exit")
+    print("7. Search by Name")
+    print("8. Search by Department")
+    print("9. Sorted by GPA: ")
+    print("10. Student Statistics :")
+    print("11. Export Students to CSV")
 
     choice = input("Enter your choice: ")
     try:
@@ -47,6 +52,54 @@ while True:
         elif choice == "6":
             print("Thank you for using the system.")
             break
+        elif choice == "7":
+            name = input("Enter student name: ")
+            result = manager.search_by_name(name)
+            if result:
+                for r in result:
+                    r.display_info()
+                    print("-" * 30)
+            else:
+                print("Student not found")
+        elif choice == "8":
+            department = input("Enter department :")
+            result = manager.search_by_department(department)
+            if result:
+                for r in result:
+                    r.display_info()
+                    print("-" * 30)
+            else:
+                print("Department not found")
+        elif choice == "9":
+            result = manager.sort_by_gpa()
+            if result:
+                for r in result:
+                    r.display_info()
+                    print("-" * 30)
+            else:
+                print("no students found ")
+        elif choice == "10":
+            stats = manager.statistics()
+            if stats:
+                print("\n========== Student Statistics ==========")
+                print(f"Total Students: {stats['total students = ']}")
+
+                print("\nHighest GPA Student:")
+                stats["highest student : "].display_info()
+
+                print("\nLowest GPA Student:")
+                stats["lowest student : "].display_info()
+
+                print(f"\nAverage GPA: {stats['average students = ']}") 
+       
+            else:
+                print("No students found.")
+        elif choice == "11":
+            manager.export_to_csv()
+            print("Students exported successfully to students.csv.")
+ 
+
+        
         else:
             print("Invalid choice.")
     except ValueError as e:
