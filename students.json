@@ -4,28 +4,21 @@
         "name": "Amany Rabie ",
         "age": 21,
         "department": "CV",
-        "gpa": 3.3
+        "gpa": 3.6
     },
     {
         "student_id": 101,
         "name": "Eman Ahmed",
         "age": 21,
         "department": "IOT",
-        "gpa": 3.4
-    },
-    {
-        "student_id": 103,
-        "name": "Ahmed Ali ",
-        "age": 21,
-        "department": "Web Development",
-        "gpa": 2.9
+        "gpa": 3.5
     },
     {
         "student_id": 104,
         "name": "Hesham Ali ",
         "age": 21,
         "department": "CSS",
-        "gpa": 2.7
+        "gpa": 3.0
     },
     {
         "student_id": 106,
@@ -33,5 +26,33 @@
         "age": 23,
         "department": "IT",
         "gpa": 3.111
+    },
+    {
+        "student_id": 105,
+        "name": "Alaa Ahmed ",
+        "age": 24,
+        "department": "CV",
+        "gpa": 3.0
+    },
+    {
+        "student_id": 108,
+        "name": "Asmaa Adel",
+        "age": 30,
+        "department": "web development",
+        "gpa": 3.2
+    },
+    {
+        "student_id": 109,
+        "name": "Basmaa Asam",
+        "age": 22,
+        "department": "cv",
+        "gpa": 3.1
+    },
+    {
+        "student_id": 110,
+        "name": "as",
+        "age": 22,
+        "department": "it",
+        "gpa": 2.1
     }
 ]

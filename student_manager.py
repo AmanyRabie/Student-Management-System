@@ -1,11 +1,10 @@
-import json
-import os
-import csv
 from student import Student
+from repositories.json_student_repository import JSONStudentRepository
+
 class StudentManager:
     def __init__(self):
-        self.students =[] 
-        self.load_students()
+        self.repository = JSONStudentRepository()
+        self.students = self.repository.load()
 
     def add_student(self, student):
          # student => object from class student 
@@ -13,7 +12,7 @@ class StudentManager:
             if s.student_id == student.student_id:
                 raise ValueError("Student ID already exists.")
         self.students.append(student)
-        self.save_students()
+        self.repository.save(self.students)
 
     def find_student(self, student_id):
         for s in self.students:
@@ -25,7 +24,7 @@ class StudentManager:
         student = self.find_student(student_id)
         if student: 
              self.students.remove(student)
-             self.save_students()
+             self.repository.save(self.students)
         else:
              raise ValueError("Student not found.")
 
@@ -33,43 +32,12 @@ class StudentManager:
         student = self.find_student(student_id)
         if student:
             student.gpa = new_gpa
-            self.save_students()
+            self.repository.save(self.students)
         else:
              raise ValueError("Student not found.")
 
-    def display_all_students(self):
-        if not self.students:
-            print("no students found ")
-            return
-        for s in self.students:
-            s.display_info()
-            print("-" * 30)
-
-    def save_students(self, filename="students.json"):
-        filepath = os.path.join(os.path.dirname(__file__), filename)
-
-        with open(filepath, "w", encoding="utf-8") as file:
-            data = [student.to_dict() for student in self.students]
-            json.dump(data, file, indent=4, ensure_ascii=False)
-
-
-
-
-    def load_students(self, filename="students.json"):
-        filepath = os.path.join(os.path.dirname(__file__), filename)
-
-        try:
-            with open(filepath, "r", encoding="utf-8") as file:
-                data = json.load(file)
-
-            self.students = []
-
-            for item in data:
-                student = Student.from_dict(item)
-                self.students.append(student)
-
-        except FileNotFoundError:
-            self.students = []
+    def get_all_students(self):
+         return self.students
 
     def search_by_name(self, name):
         result =[]
@@ -84,13 +52,6 @@ class StudentManager:
             if department.lower() in student.department.lower():
                 result.append(student)
         return result
-    
-    def sort_by_gpa(self):
-        return sorted(
-            self.students,
-            key = lambda student : student.gpa,
-            reverse = True
-        )
 
     def highest_gpa(self):
         if not self.students:
@@ -131,25 +92,30 @@ class StudentManager:
             "lowest student : " : lowest,
             "average students = " : average
         }
-
-    def export_to_csv(self, filename="students.csv"):
-         with open(filename, "w", newline="", encoding="utf-8") as file:
-            writer = csv.writer(file)
-
-            writer.writerow([
-                "Student ID",
-                "Name",
-                "Age",
-                "Department",
-                "GPA"
-            ])
-
-            for student in self.students:
-                writer.writerow([
-                    student.student_id,
-                    student.name,
-                    student.age,
-                    student.department,
-                    student.gpa
-                ])
         
+    def advanced_filter(
+        self,
+        name = None,
+        department = None,
+        min_gpa = None,
+        max_gpa = None,
+        min_age = None,
+        max_age = None
+    ):
+        result = []
+        for student in self.students:
+            if name and name.lower() not in student.name.lower():
+                continue
+            if department and department.lower() not in student.department.lower():
+                continue
+            if min_gpa is not None and student.gpa < min_gpa:
+                continue
+            if max_gpa is not None and student.gpa > max_gpa:
+                continue
+            if min_age is not None and student.age < min_age:
+                continue
+            if max_age is not None and student.age > max_age:
+                continue
+
+            result.append(student)
+        return result 
